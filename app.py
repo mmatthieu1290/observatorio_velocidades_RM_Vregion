@@ -20,7 +20,9 @@ def get_comunas():
             "SELECT DISTINCT nombre_com FROM arcos "
             "WHERE nombre_com IS NOT NULL ORDER BY nombre_com"
         ))
-        return [r[0] for r in result]
+        return [r[0] for r in result if r[0] not in ["BUIN","CALERA DE TANGO",
+                                                     "LAMPA","PEÑAFLOR","PIRQUE",
+                                                     "SAN JOSÉ DE MAIPO"]]
 
 @st.cache_data(ttl=3600)
 def get_rango_fechas():

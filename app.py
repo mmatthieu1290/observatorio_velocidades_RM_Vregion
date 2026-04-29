@@ -67,8 +67,10 @@ with col2:
     )
 
 with col3:
-    franja = st.radio("Franja horaria", ["manana", "tarde"], horizontal=True)
-
+    franja_completed = st.radio("Franja horaria", ["mañana (7:00-10:00)", "tarde (17:00-20:00)"], horizontal=True)
+    franja =  franja_completed.split(" ")[0]
+    franja = franja.replace("ñ","n")
+    print(franja_completed)
 # ---------- Resultado ----------
 gdf = cargar_datos(comuna, fecha.isoformat(), franja)
 
@@ -81,13 +83,13 @@ largo_total = gdf["shape__len"].sum()
 vel_pond = (gdf["velocidad_promedio"] * gdf["shape__len"]).sum() / largo_total
 
 col_a, col_b, col_c = st.columns(3)
-col_a.metric("Velocidad ponderada promedio", f"{vel_pond:.2f}")
+col_a.metric("Velocidad ponderada promedio", f"{100*vel_pond:.2f}% de la velocidad máxima")
 col_b.metric("N° de arcos", len(gdf))
 col_c.metric("Largo total (m)", f"{largo_total:,.0f}")
 
 # ---------- Mapa ----------
 # Centro del mapa = centroide del conjunto
-centro = gdf.geometry.unary_union.centroid
+centro = gdf.geometry.union_all().centroid
 m = folium.Map(location=[centro.y, centro.x], zoom_start=14, tiles="cartodbpositron")
 
 # Color según velocidad: rojo lento, verde rápido

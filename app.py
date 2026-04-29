@@ -83,8 +83,11 @@ largo_total = gdf["shape__len"].sum()
 vel_pond = (gdf["velocidad_promedio"] * gdf["shape__len"]).sum() / largo_total
 
 col_a, col_b, col_c = st.columns(3)
-col_a.metric("Velocidad ponderada promedio (porcentaje de la \
-             velocidad máxima)", f"{100*vel_pond:.2f}%")
+col_a.metric(
+    label="Velocidad ponderada promedio",
+    value=f"{vel_pond:.2%}",
+    help="Porcentaje de la velocidad máxima, ponderado por largo de los arcos"
+)
 col_b.metric("N° de arcos", len(gdf))
 col_c.metric("Largo total (m)", f"{largo_total:,.0f}")
 

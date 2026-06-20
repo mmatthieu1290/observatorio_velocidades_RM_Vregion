@@ -2,7 +2,7 @@
 
 An interactive Streamlit dashboard for visualizing aggregated traffic speeds across road segments ("arcos") in communes of Santiago (Región Metropolitana) and the V Región. Select a commune, date, and time band to explore color-coded speed maps backed by a PostgreSQL/PostGIS spatial database.
 
-[![Streamlit App]](https://89luw7kknqmcxumoregbbh.streamlit.app/)
+[Streamlit App](https://89luw7kknqmcxumoregbbh.streamlit.app/)
 
 ---
 

@@ -70,7 +70,6 @@ with col3:
     franja_completed = st.radio("Franja horaria", ["mañana (7:00-10:00)", "tarde (17:00-20:00)"], horizontal=True)
     franja =  franja_completed.split(" ")[0]
     franja = franja.replace("ñ","n")
-    print(franja_completed)
 # ---------- Resultado ----------
 gdf = cargar_datos(comuna, fecha.isoformat(), franja)
 
